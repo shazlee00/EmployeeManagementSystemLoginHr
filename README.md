@@ -108,7 +108,7 @@ cd EmployeeManagementSystemLoginHr
 
 The following diagram represents the database structure for the Employee Management System:
 
-![Database ERD](DataBaseDesign/database-erd.png)
+![Database ERD](DataBaseDesign/DatabaseERD.png)
 
 
 
