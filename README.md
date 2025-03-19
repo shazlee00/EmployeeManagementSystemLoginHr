@@ -4,6 +4,12 @@
 ## Overview
 EmployeeManagementSystemLoginHr is a .NET 8-based application designed to manage employee information, user roles, and permissions. It includes features such as JWT authentication, role-based authorization, and audit logging.
 
+
+## API Documentation (Swagger)
+You can access the API documentation here:  
+👉 [Swagger UI](http://employeemanagementapi.runasp.net/swagger/index.html)
+
+
 ## Features
 - JWT Authentication for securing APIs
 - Role-Based Authorization (Admin/User roles)
