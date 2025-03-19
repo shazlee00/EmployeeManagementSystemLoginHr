@@ -109,10 +109,85 @@ cd EmployeeManagementSystemLoginHr
     });
     
 ```
+Here’s an updated version including permission-based authorization with a custom attribute:  
+
+---
+
+### Role-Based Authorization  
+- Define roles in your application:  
+
+```csharp
+public static class Roles
+{
+    public const string Admin = "Admin";
+    public const string User = "User";
+}
+```  
+
+- Assign roles to users during registration or through an admin interface.  
+
+### Policy-Based Authorization  
+- Create authorization policies in `Program.cs`:  
+
+```csharp
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("RequireAdminRole", policy => policy.RequireRole(Roles.Admin));
+});
+```  
+
+### Permission-Based Authorization  
+In addition to role-based authorization, you can implement permission-based authorization using a custom attribute.  
+
+#### Define Permissions:  
+
+```csharp
+public static class Permissions
+{
+    public const string ManageUsers = "Permissions.ManageUsers";
+    public const string ViewReports = "Permissions.ViewReports";
+}
+```  
+
+#### Create a Custom Authorization Attribute:  
+
+```csharp
+public class HasPermissionAttribute : AuthorizeAttribute
+{
+    public HasPermissionAttribute(string permission)
+    {
+        Policy = permission;
+    }
+}
+```  
+
+#### Register Policies in `Program.cs`:  
+
+```csharp
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy(Permissions.ManageUsers, policy =>
+        policy.RequireClaim("Permission", Permissions.ManageUsers));
+
+    options.AddPolicy(Permissions.ViewReports, policy =>
+        policy.RequireClaim("Permission", Permissions.ViewReports));
+});
+```  
+
+#### Apply Permission-Based Authorization:  
+
+```csharp
+[HasPermission(Permissions.ManageUsers)]
+public IActionResult ManageUsers()
+{
+    return Ok("You have permission to manage users.");
+}
+```  
 
 ## Database ERD Design
 
-The following diagram represents the database structure for the Employee Management System:
+- The following diagram represents the database structure for the Employee Management System:
+- Note:- Permissions are stored as claims to users and Roles.
 
 ![Database ERD](DataBaseDesign/DatabaseERD.png)
 
