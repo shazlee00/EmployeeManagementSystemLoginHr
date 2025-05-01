@@ -7,7 +7,7 @@ EmployeeManagementSystemLoginHr is a .NET 8-based application designed to manage
 
 ## API Documentation (Swagger)
 You can access the API documentation here:  
-👉 [Swagger UI](http://employeemanagementapi.runasp.net/swagger/index.html)
+👉 [Swagger UI Link](http://employeemanagementapi.runasp.net/swagger/index.html)
 
 
 ## Features
